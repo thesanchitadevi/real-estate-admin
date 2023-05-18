@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Customized: Scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #272726;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #ebcb8b;
+	outline: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #ebcb8b;
+}
+
+/* Ant Design Message Over Everything  */
+.ant-message {
+	z-index: 1220;
+}
+
+/* NProgess Color */
+#nprogress {
+	z-index: 1000000000 !important;
+}
+
+#nprogress .bar {
+	background: #ebcb8b !important;
+	height: 4px !important;
+	z-index: 1000000000 !important;
+}
+
+#nprogress .spinner-icon {
+	border-top-color: #ebcb8b !important;
+	border-left-color: #ebcb8b !important;
+	z-index: 1000000000 !important;
+}
+
+#nprogress .peg {
+	box-shadow: 0 0 10px #edbd5d, 0 0 5px #ac8943 !important;
+}
