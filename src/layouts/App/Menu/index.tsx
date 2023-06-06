@@ -7,7 +7,7 @@ import {
 	DialogTitle,
 	Icon,
 } from "@mui/material";
-import { Input } from "antd";
+import { FloatButton, Input } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -68,56 +68,56 @@ const AppMenu: React.FC<{ open: boolean; onClose: () => void }> = ({
 	}, [open]);
 
 	return (
-		<Dialog
-			open={open}
-			onClose={onClose}
-			scroll="body"
-			PaperProps={{
-				sx: {
-					background: "transparent",
-					boxShadow: 0,
-				},
-			}}
-			BackdropProps={{
-				className: "backdrop-blur-lg",
-			}}
-		>
-			<DialogTitle className="sticky">
-				<Input
-					bordered={false}
-					placeholder="Search Page.."
-					className="bg-slate-300 bg-opacity-10 text-xl p-4 px-7 font-bold rounded-full mb-9"
-					size="large"
-					allowClear
-					value={search}
-					onChange={(e) => onSearch(e.target.value)}
-				/>
-			</DialogTitle>
-			<DialogContent className="bg-transparent grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
-				{locations?.map?.((l) =>
-					l.label.toLowerCase().includes(search?.toLowerCase()) ? (
-						<Button
-							className="flex-col items-center gap-2 p-4 px-7"
-							color={l?.color || "inherit"}
-							key={l.label}
-							onClick={() => {
-								if (l.to !== undefined) navigate(`/app/${l.to}`);
+    <Dialog
+      open={open}
+      onClose={onClose}
+      scroll="body"
+      PaperProps={{
+        sx: {
+          background: "transparent",
+          boxShadow: 0,
+        },
+      }}
+      BackdropProps={{
+        className: "backdrop-blur-lg",
+      }}
+    >
+      <DialogTitle className="sticky">
+        <Input
+          bordered={false}
+          placeholder="Search Page.."
+          className="bg-slate-300 bg-opacity-10 text-xl p-4 px-7 font-bold rounded-full mb-9"
+          size="large"
+          allowClear
+          value={search}
+          onChange={(e) => onSearch(e.target.value)}
+        />
+      </DialogTitle>
+      <DialogContent className="bg-transparent grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
+        {locations?.map?.((l) =>
+          l.label.toLowerCase().includes(search?.toLowerCase()) ? (
+            <Button
+              className="flex-col items-center gap-2 p-4 px-7"
+              color={l?.color || "inherit"}
+              key={l.label}
+              onClick={() => {
+                if (l.to !== undefined) navigate(`/app/${l.to}`);
 
-								if (l.func) l.func();
+                if (l.func) l.func();
 
-								onClose();
-							}}
-						>
-							<Icon className="text-4xl">{l.icon}</Icon>
-							<div>{l.label}</div>
-						</Button>
-					) : (
-						<></>
-					)
-				)}
-			</DialogContent>
-		</Dialog>
-	);
+                onClose();
+              }}
+            >
+              <Icon className="text-4xl">{l.icon}</Icon>
+              <div>{l.label}</div>
+            </Button>
+          ) : (
+            <></>
+          )
+        )}
+      </DialogContent>
+    </Dialog>
+  );
 };
 
 export default AppMenu;

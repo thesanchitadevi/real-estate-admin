@@ -38,7 +38,8 @@
 
 #nprogress .spinner-icon {
 	border-top-color: #0b162e !important;
-		border-left-color: #0b162e !important;
+	border-left-color: #0b162e !important;
+	border-left-color: #0b162e !important;
 	z-index: 1000000000 !important;
 }
 
