@@ -10,61 +10,19 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { Input, Select, Upload, UploadProps } from "antd";
+import { Input, Select} from "antd";
 import React from "react";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import { MdClose } from "react-icons/md";
 import { message } from "@components/antd/message";
-import { Icon } from "@iconify/react";
 import handleResponse from "@/utilities/handleResponse";
 import { usePostProjects } from "@/queries/projects";
-import { usePaginate } from "@tam11a/react-use-hooks";
 
 const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
   open,
   onClose,
 }) => {
-  const {data: projectData, mutateAsync: mutateProjectsAsync } = usePostProjects();
-
-  // Types Query Params
-  const { search: typesSearch, setSearch: setTypesSearch } = usePaginate({
-    defaultParams: {
-      limit: 30,
-    },
-  });
-
-  // Types for Options in Select
-  const [typesOptions, setTypesOptions] = React.useState<
-    { value: any; label: any }[]
-  >([]);
-  React.useEffect(() => {
-    setTypesOptions(
-      Array.from(projectData?.data || [], (types: any) => ({
-        value: types.id,
-        label: types.keyword,
-      }))
-    );
-  }, [projectData]);
-    
-  // Status Query Params
-  const { search: statusSearch, setSearch: setStatusSearch } = usePaginate({
-    defaultParams: {
-      limit: 30,
-    },
-  });
-
-  // Status for Options in Select
-  const [statusOptions, setStatusOptions] = React.useState<
-    { value: any; label: any }[]
-  >([]);
-  React.useEffect(() => {
-    setStatusOptions(
-      Array.from(projectData?.data || [], (status: any) => ({
-        value: status.id,
-        label: status.keyword,
-      }))
-    );
-  }, [projectData]);
+  const { mutateAsync: mutateProjectsAsync } = usePostProjects();
 
   // Form Handler Hooks from React Use Form
   const { reset, handleSubmit, control } = useForm({
@@ -187,21 +145,15 @@ const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
             }) => (
               <Select
                 popupClassName="z-[1301]"
-                mode="multiple"
                 className="w-full"
                 size="large"
                 placeholder={"Select Types"}
                 showSearch
-                options={typesOptions}
-                searchValue={typesSearch}
-                onSearch={(v) => setTypesSearch(v)}
-                // loading={isPlatformLoading}
-                optionFilterProp="children"
-                filterOption={(input, option) =>
-                  (option?.label?.toLowerCase() ?? "").includes(
-                    input.toLowerCase()
-                  )
-                }
+                allowClear
+                options={[
+                  { value: "construction", label: "Construction" },
+                  { value: "residential", label: "Residential" },
+                ]}
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
@@ -220,21 +172,17 @@ const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
             }) => (
               <Select
                 popupClassName="z-[1301]"
-                mode="multiple"
                 className="w-full"
                 size="large"
                 placeholder={"Select Status"}
                 showSearch
-                options={statusOptions}
-                searchValue={statusSearch}
-                onSearch={(v) => setStatusSearch(v)}
-                // loading={isPlatformLoading}
-                optionFilterProp="children"
-                filterOption={(input, option) =>
-                  (option?.label?.toLowerCase() ?? "").includes(
-                    input.toLowerCase()
-                  )
-                }
+                allowClear
+                options={[
+                  { value: "north", label: "north" },
+                  { value: "south", label: "Upcoming" },
+                  { value: "east", label: "Completed" },
+                  { value: "east", label: "Completed" },
+                ]}
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
@@ -251,14 +199,24 @@ const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
               field: { onChange, onBlur, value },
               fieldState: { error },
             }) => (
-              <Input
+              <Select
+                popupClassName="z-[1301]"
+                mode="multiple"
+                allowClear
+                className="w-full"
                 size="large"
-                placeholder="Enter Orientation"
+                placeholder={"Select Orientation"}
+                showSearch
+                options={[
+                  { value: "north", label: "north" },
+                  { value: "south", label: "south" },
+                  { value: "east", label: "east" },
+                  { value: "west", label: "west" },
+                ]}
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
                 status={error ? "error" : ""}
-                suffix={<ErrorSuffix error={error} />}
               />
             )}
           />

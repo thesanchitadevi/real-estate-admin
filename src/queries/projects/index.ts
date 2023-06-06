@@ -1,5 +1,6 @@
 import instance from "@/services";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { IUpdateProject } from "./types";
 
 const getProjects = (params: any) =>
   instance.get(`v1/projects`, {
@@ -36,6 +37,53 @@ export const usePostProjects = () => {
   return useMutation(postProjects, {
     onSuccess: () => {
       qc.invalidateQueries(["projects"]);
+    },
+  });
+};
+
+
+const getProjectById = (id: any) => {
+  return instance.get(`/projects/${id}`, {
+    // params: {},
+  });
+};
+
+export const useGetProjectById = (id: any) => {
+  return useQuery(["get-projects-by-id", id], () => getProjectById(id), {
+    enabled: !!id,
+    // select: (data: string) => data?.data || [],
+  });
+};
+
+const updateProject = ({
+  id,
+  data,
+}: {
+  id: string | undefined;
+  data: IUpdateProject;
+}) => {
+  return instance.patch(`/projects/${id}`, data);
+};
+
+export const useUpdateProject = () => {
+  const queryClient = useQueryClient();
+  return useMutation(updateProject, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["projects"]);
+      queryClient.invalidateQueries(["get-employees-by-id"]);
+    },
+  });
+};
+
+
+const delProjects = (id: any) => instance.delete(`v1/projects/${id}`);
+
+export const useDelProjects = () => {
+  const queryClient = useQueryClient();
+  return useMutation(delProjects, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["projects"]);
+      queryClient.invalidateQueries(["projects-info"]);
     },
   });
 };
