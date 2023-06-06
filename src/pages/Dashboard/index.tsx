@@ -4,7 +4,6 @@ import { usePaginate, useToggle } from "@tam11a/react-use-hooks";
 import React from "react";
 import columns from "./columns";
 import { DataGrid } from "@mui/x-data-grid";
-import { Input } from "antd";
 import Create from "./components/create";
 
 const Dashboard: React.FC = () => {
