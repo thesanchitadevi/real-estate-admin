@@ -27,7 +27,7 @@ const AppMenu: React.FC<{ open: boolean; onClose: () => void }> = ({
   }[] = [
     {
       icon: <Iconify icon={"solar:home-angle-bold-duotone"} />,
-      label: "Dashboard",
+      label: "Projects",
       to: "",
     },
     {
@@ -40,21 +40,6 @@ const AppMenu: React.FC<{ open: boolean; onClose: () => void }> = ({
       label: "Testimonial",
       to: "testimonials",
     },
-    // {
-    // 	icon: <Iconify icon={"solar:map-arrow-down-bold-duotone"} />,
-    // 	label: "Map",
-    // 	to: "map",
-    // },
-    // {
-    // 	icon: <Iconify icon={"solar:user-bold-duotone"} />,
-    // 	label: "Critics",
-    // 	to: "critics",
-    // },
-    // {
-    // 	icon: <Iconify icon={"solar:devices-bold-duotone"} />,
-    // 	label: "Platforms",
-    // 	to: "platforms",
-    // },
     {
       icon: <Iconify icon={"solar:shield-user-bold-duotone"} />,
       label: "Moderators",
