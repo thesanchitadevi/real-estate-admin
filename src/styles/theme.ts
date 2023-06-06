@@ -4,18 +4,18 @@ const theme = createTheme({
   palette: {
     mode: "dark",
     background: {
-      default: "#242933",
-      paper: "#2E3440",
+      default: "#04070f",
+      paper: "#070f1f",
     },
     primary: {
-      main: "#EBCB8B",
+      main: "#0b162e",
     },
     error: {
-      main: "#d0736e",
+      main: "#de1f51",
     },
   },
   typography: {
-    fontFamily: "Nunito, sans-serif",
+    fontFamily: "Montserrat,sans-serif",
     button: {
       textTransform: "unset",
       fontWeight: "bolder",

@@ -8,16 +8,16 @@
 }
 
 ::-webkit-scrollbar-track {
-	background-color: #272726;
+	background-color: #04070f;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #ebcb8b;
+	background-color: #0b162e;
 	outline: none;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background-color: #ebcb8b;
+	background-color: #0b162e;
 }
 
 /* Ant Design Message Over Everything  */
@@ -31,17 +31,17 @@
 }
 
 #nprogress .bar {
-	background: #ebcb8b !important;
+	background: #0b162e !important;
 	height: 4px !important;
 	z-index: 1000000000 !important;
 }
 
 #nprogress .spinner-icon {
-	border-top-color: #ebcb8b !important;
-	border-left-color: #ebcb8b !important;
+	border-top-color: #0b162e !important;
+	border-left-color: #0b162e !important;
 	z-index: 1000000000 !important;
 }
 
 #nprogress .peg {
-	box-shadow: 0 0 10px #edbd5d, 0 0 5px #ac8943 !important;
+	box-shadow: 0 0 10px #0b162e, 0 0 5px #070f1f !important;
 }
