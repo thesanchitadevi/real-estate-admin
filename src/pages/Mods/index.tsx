@@ -41,7 +41,7 @@ const Mods: React.FC = () => {
   return (
     <>
       <Typography className="font-bold text-white text-2xl mb-3 flex items-center justify-center">
-        Moderator
+        New Moderator
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto mt-4">
         <Label isRequired>Email</Label>
