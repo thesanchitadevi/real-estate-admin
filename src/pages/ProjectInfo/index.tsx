@@ -1,5 +1,4 @@
 import handleResponse from "@/utilities/handleResponse";
-import Label from "@components/Label";
 import { Container } from "@mui/system";
 import { Input, Select } from "antd";
 import React from "react";
