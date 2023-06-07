@@ -5,7 +5,6 @@ import { usePaginate, useToggle } from "@tam11a/react-use-hooks";
 import { GridColDef, DataGrid, GridValueGetterParams } from "@mui/x-data-grid";
 import Create from "./components/Create/create";
 import { FiEdit2 } from "react-icons/fi";
-import { Icon } from "@iconify/react";
 import { MdDelete } from "react-icons/md";
 import handleResponse from "@/utilities/handleResponse";
 import { message } from "@components/antd/message";
@@ -133,7 +132,7 @@ const columns: GridColDef[] = [
 ];
 
 const Employee: React.FC = () => {
-  const { limit, setLimit, page, setPage, search, setSearch, getQueryParams } =
+  const { limit, setLimit, page, setPage, getQueryParams } =
     usePaginate();
   const { data, isLoading } = useGetEmployees(getQueryParams());
   console.log(data);

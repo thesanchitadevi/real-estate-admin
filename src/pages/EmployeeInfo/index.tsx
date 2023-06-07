@@ -1,7 +1,7 @@
 import handleResponse from "@/utilities/handleResponse";
 import Label from "@components/Label";
 import { Container } from "@mui/system";
-import { Input, Select } from "antd";
+import { Input } from "antd";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Button, Typography } from "@mui/material";
@@ -16,7 +16,6 @@ const EmployeeInfo: React.FC = ({}) => {
 
   const { data: employeeData } = useGetEmployeesById(eid);
   const { mutateAsync: updateUser } = useUpdateEmployee();
-
 
   React.useEffect(() => {
     if (!employeeData) return;

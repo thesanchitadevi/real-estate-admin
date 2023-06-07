@@ -1,13 +1,9 @@
 import { useDelProjects, useGetProjects } from "@/queries/projects";
 import {
   Box,
-  Card,
   CardActions,
   CardContent,
-  CardHeader,
-  Chip,
   Divider,
-  Grid,
   IconButton,
   ListItemText,
   Typography,
@@ -24,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
   const { getQueryParams } = usePaginate();
-  const { data, isLoading } = useGetProjects(getQueryParams());
+  const { data } = useGetProjects(getQueryParams());
   console.log(data);
   const { state, toggleState } = useToggle(false);
 
