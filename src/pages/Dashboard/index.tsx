@@ -6,6 +6,7 @@ import {
   CardContent,
   CardHeader,
   Chip,
+  Divider,
   Grid,
   IconButton,
   ListItemText,
@@ -18,6 +19,8 @@ import handleResponse from "@/utilities/handleResponse";
 import { message } from "@components/antd/message";
 import useAreYouSure from "@/hooks/useAreYouSure";
 import { MdDelete } from "react-icons/md";
+import { FiEdit2 } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
   const { getQueryParams } = usePaginate();
@@ -48,6 +51,8 @@ const Dashboard: React.FC = () => {
     cancelText: "Cancel",
   });
 
+  const navigate = useNavigate();
+
   return (
     <Box sx={{ height: 400, width: "100%" }} className="gap-4">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -65,125 +70,98 @@ const Dashboard: React.FC = () => {
         />
         <Create open={state} onClose={toggleState} />
       </div>
-      <div className="grid grid-cols-3 gap-4 ">
+      <div className="mb-5">
         {data?.data.map((project: any) => (
           <>
             {delContextHolder}
-            <Card key={project.id} style={{ width: 300 }} className="mb-4">
-              <CardHeader
-                // action={}
-                title={project.projectName}
-                subheader={project.architect}
-              />
-              <Grid item xs={1.7} md={1.9}>
-                <CardContent>
-                  <Typography
-                    variant="body2"
-                    sx={{ mb: 1 }}
-                    color="text.secondary"
+            <Box
+              key={project.id}
+              className="bg-none"
+              sx={{
+                width: "80%",
+                mb: 1,
+              }}
+            >
+              <div className="flex flex-row">
+                <ListItemText
+                  primary={project.projectName}
+                  secondary={project.architect}
+                  primaryTypographyProps={{
+                    className: "font-semibold text-white text-xl",
+                  }}
+                />
+                <CardActions disableSpacing className="">
+                  <IconButton
+                    sx={{ fontSize: "large" }}
+                    color="primary"
+                    onClick={() => navigate(`/app/projects/${project?.id}`)}
                   >
-                    Types: <span className="text-white">{project.types}</span>
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ mb: 1 }}
-                    color="text.secondary"
+                    <FiEdit2 />
+                  </IconButton>
+                  <IconButton
+                    sx={{ fontSize: "large" }}
+                    color="error"
+                    onClick={() =>
+                      openClose(
+                        () => onDelete(project.id),
+                        <>
+                          Are you sure you want to delete this{" "}
+                          {`${project.projectName || ""} `}?
+                        </>
+                      )
+                    }
                   >
-                    Status: <span className="text-white">{project.status}</span>
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ mb: 1 }}
-                    color="text.secondary"
-                  >
-                    Orientation:{" "}
-                    <span className="text-white">{project.orientation}</span>
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ mb: 1 }}
-                    color="text.secondary"
-                  >
-                    Address:{" "}
-                    <span className="text-white">{project.address}</span>
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ mb: 1 }}
-                    color="text.secondary"
-                  >
-                    City: <span className="text-white">{project.city}</span>
-                  </Typography>
-                  <Typography sx={{ mb: 1 }} color="text.secondary">
-                    Area: <span className="text-white">{project.area}</span>
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ mb: 1 }}
-                    color="text.secondary"
-                  >
-                    Land Size:{" "}
-                    <span className="text-white">{project.landSize}</span>
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ mb: 1 }}
-                    color="text.secondary"
-                  >
-                    Number Units:{" "}
-                    <span className="text-white">{project.numberUnits}</span>
-                  </Typography>
-                  <Typography sx={{ mb: 1 }} color="text.secondary">
-                    Number Floors:{" "}
-                    <span className="text-white">{project.numberFloors}</span>
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ mb: 1 }}
-                    color="text.secondary"
-                  >
-                    Number Parkings:{" "}
-                    <span className="text-white">{project.numberParkings}</span>
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ mb: 1 }}
-                    color="text.secondary"
-                  >
-                    Apartment Size:{" "}
-                    <span className="text-white">{project.apartmentSize}</span>
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ mb: 1 }}
-                    color="text.secondary"
-                  >
-                    Handover Date:{" "}
-                    <span className="text-white">{project.handOverDate}</span>
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    CreatedBy: <Chip label={project.createdBy?.username} />
-                  </Typography>
-                </CardContent>
-              </Grid>
-              <CardActions disableSpacing>
-                <IconButton
-                  sx={{ fontSize: "large" }}
-                  color="error"
-                  onClick={() =>
-                    openClose(
-                      () => onDelete(data.row.id),
-                      <>
-                        Are you sure you want to delete this{" "}
-                        {`${project.projectName || ""} `}?
-                      </>
-                    )
-                  }
-                >
-                  <MdDelete />
-                </IconButton>
-              </CardActions>
-            </Card>
+                    <MdDelete />
+                  </IconButton>
+                </CardActions>
+              </div>
+              <Divider />
+              <CardContent className="grid grid-cols-3 ">
+                <Typography variant="body2" color="text.secondary">
+                  Types: <span className="text-white">{project.types}</span>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Status: <span className="text-white">{project.status}</span>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Orientation:{" "}
+                  <span className="text-white">{project.orientation}</span>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Address: <span className="text-white">{project.address}</span>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  City: <span className="text-white">{project.city}</span>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Area: <span className="text-white">{project.area}</span>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Land Size:{" "}
+                  <span className="text-white">{project.landSize}</span>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Number Units:{" "}
+                  <span className="text-white">{project.numberUnits}</span>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Number Floors:{" "}
+                  <span className="text-white">{project.numberFloors}</span>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Number Parkings:{" "}
+                  <span className="text-white">{project.numberParkings}</span>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Apartment Size:{" "}
+                  <span className="text-white">{project.apartmentSize}</span>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Handover Date:{" "}
+                  <span className="text-white">{project.handOverDate}</span>
+                </Typography>
+              </CardContent>
+            </Box>
           </>
         ))}
       </div>

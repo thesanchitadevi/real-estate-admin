@@ -178,10 +178,9 @@ const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
                 showSearch
                 allowClear
                 options={[
-                  { value: "north", label: "north" },
-                  { value: "south", label: "Upcoming" },
-                  { value: "east", label: "Completed" },
-                  { value: "east", label: "Completed" },
+                  { value: "upcoming", label: "Upcoming" },
+                  { value: "ongoing", label: "Ongoing" },
+                  { value: "completed", label: "Completed" },
                 ]}
                 onChange={onChange}
                 onBlur={onBlur}
