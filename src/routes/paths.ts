@@ -10,6 +10,6 @@ export const PRIVATE_ROUTES = {
   EMPLOYEEINFO: "employee/:eid/*",
   TESTIMONIALS: "testimonials",
   MODS: "mods/*",
-  // SETTINGS: "settings",
+  SETTINGS: "settings",
   NOTFOUND: "*",
 };
