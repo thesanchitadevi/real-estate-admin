@@ -4,7 +4,7 @@ import { Container } from "@mui/system";
 import { Input, Select } from "antd";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { message } from "@components/antd/message";
 import { useGetEmployeesById, useUpdateEmployee } from "@/queries/employee";
@@ -52,6 +52,9 @@ const EmployeeInfo: React.FC = ({}) => {
   };
   return (
     <>
+      <Typography className="font-bold text-white text-xl text-center">
+        Update Employee Information
+      </Typography>
       <Container maxWidth={"xs"}>
         <form
           className="py-3 grid grid-cols-1 mt-3"

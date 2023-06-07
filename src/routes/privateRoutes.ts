@@ -18,4 +18,8 @@ export const privateRoutes = [
     path: PRIVATE_ROUTES.EMPLOYEEINFO,
     Component: lazy(() => import("@pages/EmployeeInfo")),
   },
+  {
+    path: PRIVATE_ROUTES.PROJECTINFO,
+    Component: lazy(() => import("@pages/ProjectInfo")),
+  },
 ];

@@ -5,6 +5,7 @@ export const PUBLIC_ROUTES = {
 
 export const PRIVATE_ROUTES = {
   DASHBOARD: "",
+  PROJECTINFO: ":pid/*",
   EMPLOYEE: "employee/*",
   EMPLOYEEINFO: "employee/:eid/*",
   // TESTIMONIALS: "testimonials",
