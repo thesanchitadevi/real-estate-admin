@@ -10,7 +10,7 @@ import { useForm, Controller, FieldValues } from "react-hook-form";
 
 const Mods: React.FC = () => {
   const { control, handleSubmit, reset } = useForm();
-  const {mutateAsync: adminRegister} = usePostRegister();
+  const { mutateAsync: adminRegister } = usePostRegister();
 
   const onSubmit = async (data: FieldValues) => {
     message.open({
@@ -25,23 +25,21 @@ const Mods: React.FC = () => {
           lastName: data.lastName,
           email: data.email,
           username: data.username,
-          password: data.password
+          password: data.password,
         }),
       [201]
     );
     message.destroy();
     if (res.status) {
-      reset()
-      message.success(res.message)
-    }
-    else message.error(res.message);
-    
-  }
+      reset();
+      message.success(res.message);
+    } else message.error(res.message);
+  };
 
   return (
     <>
       <Typography className="font-bold text-white text-2xl mb-3 flex items-center justify-center">
-        Moderator
+        New Moderator
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto mt-4">
         <Label isRequired>Email</Label>
@@ -66,8 +64,8 @@ const Mods: React.FC = () => {
             />
           )}
         />
+        <Label isRequired>Full Name</Label>
         <Input.Group compact>
-          <Label isRequired>Full Name</Label>
           <Controller
             control={control}
             name={"firstName"}
