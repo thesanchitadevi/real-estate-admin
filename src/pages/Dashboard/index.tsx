@@ -17,8 +17,11 @@ import useAreYouSure from "@/hooks/useAreYouSure";
 import { MdDelete } from "react-icons/md";
 import { FiEdit2 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { Input } from "antd";
 
 const Dashboard: React.FC = () => {
+  const { search, setSearch, getQueryParams } = usePaginate();
+  const { data, isLoading } = useGetProjects(getQueryParams());
   const { getQueryParams } = usePaginate();
   const { data } = useGetProjects(getQueryParams());
   console.log(data);
@@ -65,6 +68,14 @@ const Dashboard: React.FC = () => {
           }}
         />
         <Create open={state} onClose={toggleState} />
+        <Input
+          size="large"
+          className="max-w-xs"
+          allowClear
+          placeholder="Search.."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </div>
       <div className="mb-5">
         {data?.data.map((project: any) => (
