@@ -1,13 +1,9 @@
 import { useDelProjects, useGetProjects } from "@/queries/projects";
 import {
   Box,
-  Card,
   CardActions,
   CardContent,
-  CardHeader,
-  Chip,
   Divider,
-  Grid,
   IconButton,
   ListItemText,
   Typography,
@@ -26,6 +22,8 @@ import { Input } from "antd";
 const Dashboard: React.FC = () => {
   const { search, setSearch, getQueryParams } = usePaginate();
   const { data, isLoading } = useGetProjects(getQueryParams());
+  const { getQueryParams } = usePaginate();
+  const { data } = useGetProjects(getQueryParams());
   console.log(data);
   const { state, toggleState } = useToggle(false);
 

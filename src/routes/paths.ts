@@ -8,8 +8,8 @@ export const PRIVATE_ROUTES = {
   PROJECTINFO: ":pid/*",
   EMPLOYEE: "employee/*",
   EMPLOYEEINFO: "employee/:eid/*",
-  // TESTIMONIALS: "testimonials",
-  // MODS: "mods/*",
-  // SETTINGS: "settings",
+  TESTIMONIALS: "testimonials",
+  MODS: "mods/*",
+  SETTINGS: "settings",
   NOTFOUND: "*",
 };

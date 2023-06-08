@@ -22,4 +22,16 @@ export const privateRoutes = [
     path: PRIVATE_ROUTES.PROJECTINFO,
     Component: lazy(() => import("@pages/ProjectInfo")),
   },
+  {
+    path: PRIVATE_ROUTES.TESTIMONIALS,
+    Component: lazy(() => import("@pages/Testimonials")),
+  },
+  {
+    path: PRIVATE_ROUTES.MODS,
+    Component: lazy(() => import("@pages/Mods")),
+  },
+  {
+    path: PRIVATE_ROUTES.SETTINGS,
+    Component: lazy(() => import("@pages/Settings")),
+  },
 ];
