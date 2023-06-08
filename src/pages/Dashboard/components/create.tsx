@@ -200,7 +200,6 @@ const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
             }) => (
               <Select
                 popupClassName="z-[1301]"
-                mode="multiple"
                 allowClear
                 className="w-full"
                 size="large"
