@@ -1,24 +1,24 @@
 import useAuth from "@/hooks/useAuth";
 import Iconify from "@components/iconify";
 import {
-	Button,
-	Dialog,
-	DialogContent,
-	DialogTitle,
-	Icon,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Icon,
 } from "@mui/material";
 import { FloatButton, Input } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const AppMenu: React.FC<{ open: boolean; onClose: () => void }> = ({
-	open,
-	onClose,
+  open,
+  onClose,
 }) => {
-	const { logout } = useAuth();
-	const navigate = useNavigate();
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
-	const locations: {
+  const locations: {
     icon: React.ReactNode;
     label: string;
     color?: "primary" | "secondary" | "inherit" | "error";
@@ -34,6 +34,18 @@ const AppMenu: React.FC<{ open: boolean; onClose: () => void }> = ({
       icon: <Iconify icon={"solar:user-bold-duotone"} />,
       label: "Employee",
       to: "employee",
+    },
+    {
+      icon: (
+        <Iconify icon={"teenyicons:search-property-solid"} color="darkgray" />
+      ),
+      label: "Landowner",
+      to: "landowner",
+    },
+    {
+      icon: <Iconify icon={"fluent:home-person-20-filled"} color="darkgray" />,
+      label: "Buyers",
+      to: "buyers",
     },
     {
       icon: <Iconify icon={"solar:stars-bold-duotone"} />,
@@ -58,16 +70,16 @@ const AppMenu: React.FC<{ open: boolean; onClose: () => void }> = ({
     },
   ];
 
-	const [search, setSearch] = React.useState("");
-	const onSearch = (value: string) => {
-		setSearch(value);
-	};
+  const [search, setSearch] = React.useState("");
+  const onSearch = (value: string) => {
+    setSearch(value);
+  };
 
-	React.useEffect(() => {
-		onSearch("");
-	}, [open]);
+  React.useEffect(() => {
+    onSearch("");
+  }, [open]);
 
-	return (
+  return (
     <Dialog
       open={open}
       onClose={onClose}

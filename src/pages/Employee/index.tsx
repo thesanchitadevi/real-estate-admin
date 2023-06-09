@@ -15,8 +15,8 @@ const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 90 },
   {
     field: "image",
-    headerName: "Image",
-    flex: 1,
+    headerName: "Avatar",
+    width: 100,
     renderCell: (params) => {
       console.log(params);
       return (
@@ -49,26 +49,20 @@ const columns: GridColDef[] = [
   {
     field: "description",
     headerName: "Description",
-    width: 150,
+    width: 250,
     editable: false,
   },
   {
     field: "rank",
     headerName: "Rank",
-    width: 150,
-    editable: false,
-  },
-  {
-    field: "isActive",
-    headerName: "isActive",
-    width: 150,
+    width: 100,
     editable: false,
   },
   {
     headerName: "Action",
     field: "action",
-    width: 150,
-    minWidth: 150,
+    width: 100,
+    minWidth: 100,
     flex: 1,
     headerAlign: "center",
     align: "center",
