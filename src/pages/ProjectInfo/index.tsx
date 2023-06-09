@@ -3,11 +3,12 @@ import { Container } from "@mui/system";
 import { Input, Select } from "antd";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Button, DialogContent, Divider, Typography } from "@mui/material";
+import { Button, DialogContent, Divider, Grid, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { message } from "@components/antd/message";
 import { useGetProjectById, useUpdateProject } from "@/queries/projects";
 import ErrorSuffix from "@components/antd/ErrorSuffix";
+import BackButton from "@components/BackButton";
 
 const ProjectInfo: React.FC = ({}) => {
   const { pid } = useParams();
@@ -60,9 +61,19 @@ const ProjectInfo: React.FC = ({}) => {
   };
   return (
     <>
-      <Typography className="font-bold text-white text-xl text-center">
-        Update Project Information
-      </Typography>
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <div className="flex flex-row">
+          <BackButton />
+          <Typography className="font-bold text-white text-xl mt-1">
+            Project
+          </Typography>
+        </div>
+      </Grid>
       <Container maxWidth={"md"}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogContent className="flex flex-col gap-2">
@@ -315,6 +326,9 @@ const ProjectInfo: React.FC = ({}) => {
                       onBlur={onBlur}
                       value={value}
                       status={error ? "error" : ""}
+                      type="number"
+                      min="1"
+                      max="100"
                       suffix={<ErrorSuffix error={error} />}
                     />
                   )}
@@ -337,6 +351,9 @@ const ProjectInfo: React.FC = ({}) => {
                       onBlur={onBlur}
                       value={value}
                       status={error ? "error" : ""}
+                      type="number"
+                      min="1"
+                      max="100"
                       suffix={<ErrorSuffix error={error} />}
                     />
                   )}
@@ -359,6 +376,9 @@ const ProjectInfo: React.FC = ({}) => {
                   onBlur={onBlur}
                   value={value}
                   status={error ? "error" : ""}
+                  type="number"
+                  min="1"
+                  max="100"
                   suffix={<ErrorSuffix error={error} />}
                 />
               )}

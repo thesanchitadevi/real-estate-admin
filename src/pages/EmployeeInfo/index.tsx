@@ -4,10 +4,11 @@ import { Container } from "@mui/system";
 import { Input } from "antd";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Button, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { message } from "@components/antd/message";
 import { useGetEmployeesById, useUpdateEmployee } from "@/queries/employee";
+import BackButton from "@components/BackButton";
 
 const EmployeeInfo: React.FC = ({}) => {
   const { eid } = useParams();
@@ -51,9 +52,19 @@ const EmployeeInfo: React.FC = ({}) => {
   };
   return (
     <>
-      <Typography className="font-bold text-white text-xl text-center">
-        Update Employee Information
-      </Typography>
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <div className="flex flex-row">
+          <BackButton />
+          <Typography className="font-bold text-white text-xl mt-1">
+            Management 
+          </Typography>
+        </div>
+      </Grid>
       <Container maxWidth={"xs"}>
         <form
           className="py-3 grid grid-cols-1 mt-3"

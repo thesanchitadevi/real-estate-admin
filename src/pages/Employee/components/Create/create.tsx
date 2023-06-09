@@ -170,14 +170,16 @@ const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
               field: { onChange, onBlur, value },
               fieldState: { error },
             }) => (
-              <Input
-                placeholder="Description"
+              <Input.TextArea
+                placeholder="Enter Description"
+                showCount
+                maxLength={1000}
+                autoSize={{ minRows: 4 }}
                 size="large"
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
                 status={error ? "error" : ""}
-                suffix={<ErrorSuffix error={error} />}
               />
             )}
           />

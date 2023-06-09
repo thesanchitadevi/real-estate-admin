@@ -10,7 +10,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { Input, Select} from "antd";
+import { Input, Select } from "antd";
 import React from "react";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import { MdClose } from "react-icons/md";
@@ -93,6 +93,7 @@ const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
       onClose();
     } else message.error(res.message);
   };
+
 
   return (
     <Dialog
@@ -362,6 +363,9 @@ const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
                     onBlur={onBlur}
                     value={value}
                     status={error ? "error" : ""}
+                    type="number"
+                    min="1"
+                    max="100"
                     suffix={<ErrorSuffix error={error} />}
                   />
                 )}
@@ -384,6 +388,9 @@ const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
                     onBlur={onBlur}
                     value={value}
                     status={error ? "error" : ""}
+                    type="number"
+                    min="1"
+                    max="100"
                     suffix={<ErrorSuffix error={error} />}
                   />
                 )}
@@ -406,6 +413,9 @@ const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
                 onBlur={onBlur}
                 value={value}
                 status={error ? "error" : ""}
+                type="number"
+                min="1"
+                max="100"
                 suffix={<ErrorSuffix error={error} />}
               />
             )}
@@ -421,7 +431,7 @@ const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
             }) => (
               <Input
                 size="large"
-                placeholder="Enter Handover Date"
+                placeholder="Enter Handover date"
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
