@@ -35,7 +35,7 @@ export const usePostEmployee = () => {
 
 
 const getEmployeesById = (id: any) => {
-  return instance.get(`/employee/${id}`, {
+  return instance.get(`v1/employee/${id}`, {
     // params: {},
   });
 };
@@ -54,7 +54,7 @@ const updateEmployee = ({
   id: string | undefined,
   data: IUpdateEmployee
 }) => {
-    return instance.patch(`/employee/${id}`,data);
+    return instance.patch(`v1/employee/${id}`,data);
 };
 
 export const useUpdateEmployee = () => {

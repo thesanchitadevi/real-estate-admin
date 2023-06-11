@@ -43,7 +43,7 @@ export const usePostProjects = () => {
 
 
 const getProjectById = (id: any) => {
-  return instance.get(`/projects/${id}`, {
+  return instance.get(`v1/projects/${id}`, {
     // params: {},
   });
 };
@@ -62,7 +62,7 @@ const updateProject = ({
   id: string | undefined;
   data: IUpdateProject;
 }) => {
-  return instance.patch(`/projects/${id}`, data);
+  return instance.patch(`v1/projects/${id}`, data);
 };
 
 export const useUpdateProject = () => {

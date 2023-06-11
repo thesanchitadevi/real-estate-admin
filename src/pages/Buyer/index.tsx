@@ -1,12 +1,14 @@
-import { useGetBuyer } from "@/queries/buyer";
+import { useGetBuyer, useUpdateBuyer } from "@/queries/buyer";
+import handleResponse from "@/utilities/handleResponse";
+import { message } from "@components/antd/message";
 import { Box, Checkbox, ListItemText } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { usePaginate } from "@tam11a/react-use-hooks";
-import React from "react";
-
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
+import React, { useState } from "react";
 
 const Buyer: React.FC = () => {
+  const { mutateAsync } = useUpdateBuyer();
+
   const columns: GridColDef[] = [
     {
       field: "buyerName",
@@ -102,15 +104,40 @@ const Buyer: React.FC = () => {
     },
     {
       headerName: "Action",
-      field: "read",
+      field: "isRead",
       width: 150,
       minWidth: 150,
       flex: 1,
       headerAlign: "center",
       align: "center",
-      renderCell: (params) => <Checkbox {...label} color="success" />,
+      renderCell: (params) => (
+        <Checkbox
+          checked={params.row.isRead }
+          onChange={async () => {
+            message.open({
+              type: "loading",
+              content: "Marking..",
+              duration: 0,
+            });
+            const res = await handleResponse(
+              () =>
+                mutateAsync({
+                  id: params.row.id
+                }),
+              [200]
+            );
+            message.destroy();
+            if (res.status) {
+              message.success(res.message);
+            } else {
+              message.error(res.message);
+            }
+          }}
+        />
+      ),
     },
   ];
+
   const { limit, setLimit, page, setPage, getQueryParams } = usePaginate();
   const { data, isLoading } = useGetBuyer(getQueryParams());
   console.log(data);
