@@ -58,6 +58,11 @@ const AppMenu: React.FC<{ open: boolean; onClose: () => void }> = ({
       to: "mods",
     },
     {
+      icon: <Iconify icon="ic:round-contact-page" color="gray"  />,
+      label: "Contact",
+      to: "contact",
+    },
+    {
       icon: <Iconify icon={"solar:settings-bold-duotone"} />,
       label: "Settings",
       to: "settings",

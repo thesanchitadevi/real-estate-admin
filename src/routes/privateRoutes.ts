@@ -35,6 +35,10 @@ export const privateRoutes = [
     Component: lazy(() => import("@pages/Buyer")),
   },
   {
+    path: PRIVATE_ROUTES.CONTACT,
+    Component: lazy(() => import("@pages/Contact")),
+  },
+  {
     path: PRIVATE_ROUTES.MODS,
     Component: lazy(() => import("@pages/Mods")),
   },
