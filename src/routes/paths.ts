@@ -9,9 +9,10 @@ export const PRIVATE_ROUTES = {
   EMPLOYEE: "employee/*",
   EMPLOYEEINFO: "employee/:eid/*",
   TESTIMONIALS: "testimonials",
-  LANDOWNER: "landowner/*",
-  BUYER: "buyer/*",
+  LANDOWNER: "landowner",
+  BUYER: "buyer",
   MODS: "mods/*",
   SETTINGS: "settings",
+  CONTACT: "contact",
   NOTFOUND: "*",
 };
