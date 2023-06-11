@@ -17,12 +17,23 @@ import { MdClose } from "react-icons/md";
 import { message } from "@components/antd/message";
 import handleResponse from "@/utilities/handleResponse";
 import { usePostProjects } from "@/queries/projects";
+import DateContext from "@/contexts/DateContext";
+import moment from "moment";
+import DatePicker from "@components/antd/DatePicker";
 
 const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
   open,
   onClose,
 }) => {
   const { mutateAsync: mutateProjectsAsync } = usePostProjects();
+
+   const {
+     date,
+     setDate,
+   } = React.useContext(DateContext);
+   const on_Change = (newDate: any) => {
+     setDate(newDate ? moment(newDate).toDate() : moment().toDate());
+   };
 
   // Form Handler Hooks from React Use Form
   const { reset, handleSubmit, control } = useForm({
@@ -429,14 +440,9 @@ const Create: React.FC<{ open: boolean; onClose: () => void }> = ({
               field: { onChange, onBlur, value },
               fieldState: { error },
             }) => (
-              <Input
-                size="large"
-                placeholder="Enter Handover date"
+              <DatePicker
+                value={moment(value)}
                 onChange={onChange}
-                onBlur={onBlur}
-                value={value}
-                status={error ? "error" : ""}
-                suffix={<ErrorSuffix error={error} />}
               />
             )}
           />
