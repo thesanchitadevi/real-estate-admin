@@ -44,8 +44,8 @@ const AppMenu: React.FC<{ open: boolean; onClose: () => void }> = ({
     },
     {
       icon: <Iconify icon={"fluent:home-person-20-filled"} color="darkgray" />,
-      label: "Buyers",
-      to: "buyers",
+      label: "Buyer",
+      to: "buyer",
     },
     {
       icon: <Iconify icon={"solar:stars-bold-duotone"} />,
