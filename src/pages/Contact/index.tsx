@@ -1,12 +1,14 @@
-import { useGetContact } from "@/queries/contact";
+import { useGetContact, useUpdateContact } from "@/queries/contact";
+import handleResponse from "@/utilities/handleResponse";
+import { message } from "@components/antd/message";
 import { Box, Checkbox, ListItemText } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { usePaginate } from "@tam11a/react-use-hooks";
 import React from "react";
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
 const Contact: React.FC = () => {
+  const { mutateAsync } = useUpdateContact();
+
   const columns: GridColDef[] = [
     {
       field: "contactName",
@@ -44,13 +46,37 @@ const Contact: React.FC = () => {
     },
     {
       headerName: "Action",
-      field: "read",
+      field: "isRead",
       width: 150,
       minWidth: 150,
       flex: 1,
       headerAlign: "center",
       align: "center",
-      renderCell: (params) => <Checkbox {...label} color="success" />,
+      renderCell: (params) => (
+        <Checkbox
+          checked={params.row.isRead}
+          onChange={async () => {
+            message.open({
+              type: "loading",
+              content: "Marking..",
+              duration: 0,
+            });
+            const res = await handleResponse(
+              () =>
+                mutateAsync({
+                  id: params.row.id,
+                }),
+              [200]
+            );
+            message.destroy();
+            if (res.status) {
+              message.success(res.message);
+            } else {
+              message.error(res.message);
+            }
+          }}
+        />
+      ),
     },
   ];
   const { limit, setLimit, page, setPage, getQueryParams } = usePaginate();

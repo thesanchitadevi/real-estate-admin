@@ -18,8 +18,11 @@ const ProjectInfo: React.FC = ({}) => {
   const { data: projectData } = useGetProjectById(pid);
   const { mutateAsync: updateUser } = useUpdateProject();
 
+  console.log(projectData, pid);
+  
   React.useEffect(() => {
     if (!projectData) return;
+    
     reset({
       projectName: projectData?.data?.data.projectName,
       types: projectData?.data?.data.types,
